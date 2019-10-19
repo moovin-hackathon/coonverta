@@ -1,18 +1,24 @@
 ActiveAdmin.register Store do
+  menu priority: 1 
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :name, :api_key, :default_invitation_code
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:name, :api_key, :default_invitation_code]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  filter :name
+  filter :default_invitation_code
+
+  permit_params :name, :default_invitation_code
+
+  index do
+    column :name do |store|
+      link_to(store.name, admin_store_path(store))
+    end
+    column :api_key 
+    column :default_invitation_code
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :default_invitation_code
+    end
+    f.actions
+  end
 end

@@ -7,7 +7,7 @@ class Store < ApplicationRecord
   private 
 
   def generate_api_key
-    sef.api_key = "auth-#{SecureRandom.urlsafe_base64}"
+    self.api_key = "auth-#{SecureRandom.urlsafe_base64}"
   end
 
 end
