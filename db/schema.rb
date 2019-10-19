@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_19_201001) do
+ActiveRecord::Schema.define(version: 2019_10_19_214056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,18 @@ ActiveRecord::Schema.define(version: 2019_10_19_201001) do
     t.string "name"
     t.string "api_key"
     t.string "default_invitation_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "ddd"
+    t.string "phone_number"
+    t.string "password_hash"
+    t.integer "reward_points"
+    t.string "invitation_code"
+    t.string "used_invitation_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
