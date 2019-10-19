@@ -28,6 +28,9 @@ module Coonverta
     # the framework and any gems in your application.
 
     # Don't generate system test files.
+
+    config.assets.precompile += %w[active_admin.css active_admin.js]
+    
     config.generators.system_tests = nil
   end
 end
