@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  root to: 'user#login'
+  root 'user#login'
 
   get '/login', to: 'user#login', as: 'user_login'
-  post '/login', to: 'session#create', as: 'session_create'
-  post '/logout', to: 'session#destroy', as: 'session_destroy'
+  post '/login', to: 'sessions#create', as: 'session_create'
+  get '/logout', to: 'sessions#destroy', as: 'session_destroy'
 
   get '/cadastro', to: 'user#new', as: 'user_new'
   post '/cadastro', to: 'user#create', as: 'user_create'

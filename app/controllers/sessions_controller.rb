@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def create 
+    params.permit!
     user = User.authenticate(ddd: params[:ddd], 
                              phone_number: params[:phone_number], 
                              password: params[:password])

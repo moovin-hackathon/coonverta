@@ -3,9 +3,11 @@ class UserController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def create 
+    params.permit!
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
