@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  attr_accessible :email, :password, :password_confirmation
-  
   attr_accessor :password
   before_save :encrypt_password
   
@@ -11,7 +9,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :phone_number, scope: :ddd
   
   def self.authenticate(ddd:, phone_number:, password:)
-    user = find_by(ddd:, phone_number:)
+    user = find_by(ddd: ddd, phone_number: phone_number)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else
