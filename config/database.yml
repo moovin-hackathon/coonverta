@@ -9,6 +9,12 @@ default: &default
 development:
   <<: *default
   database: coonverta_development
+  host: <%= ENV["DB_HOST"] || "localhost" %>
+  pool: 20
+  timeout: 5000
+  encoding: utf8
+  username: <%= ENV["DB_USERNAME"] || "postgres" %>
+  password:
 
 test:
   <<: *default
