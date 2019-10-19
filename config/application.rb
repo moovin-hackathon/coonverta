@@ -30,7 +30,7 @@ module Coonverta
     # Don't generate system test files.
 
     config.assets.precompile += %w[active_admin.css active_admin.js]
-    
+    config.generators.javascript_engine = :js
     config.generators.system_tests = nil
   end
 end
