@@ -2,7 +2,7 @@ class User < ApplicationRecord
   belongs_to :store 
 
   attr_accessor :password
-  before_save :encrypt_password
+  before_create :encrypt_password
   after_create :add_point
   
   validates_confirmation_of :password
@@ -38,7 +38,11 @@ class User < ApplicationRecord
   end
 
   def actual_phase
-    store.game.phases.where("required_points >= ?", user.reward_points)
-                     .order(required_points: :desc).first
+    store.game.phases.where("required_ponts <= ?", reward_points)
+                     .order(required_ponts: :desc).first
+  end
+
+  def invited_friends
+    User.where(used_invitation_code: user.invitation_code)
   end
 end

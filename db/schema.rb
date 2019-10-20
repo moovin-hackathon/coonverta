@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_19_234608) do
+ActiveRecord::Schema.define(version: 2019_10_20_004249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2019_10_19_234608) do
     t.string "ddd"
     t.string "phone_number"
     t.string "password_hash"
-    t.integer "reward_points"
+    t.integer "reward_points", default: 0
     t.string "invitation_code"
     t.string "used_invitation_code"
     t.datetime "created_at", null: false

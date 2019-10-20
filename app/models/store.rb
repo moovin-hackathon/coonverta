@@ -7,6 +7,10 @@ class Store < ApplicationRecord
 
   before_create :generate_api_key
 
+  def game 
+    games.last
+  end
+
   private 
 
   def generate_api_key
