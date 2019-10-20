@@ -1,26 +1,28 @@
 <section class="jumbotron text-center section-twoo">
   <div class="container">
     <p class="login">Cadastro</p>
-    <div class="form-group">
-      <label class="phone-user" for="exampleInputEmail1"></label>
-      <input type="text" class="text-center input-form" id="" aria-describedby="" placeholder="celular">
-    </div>
-    <div class="form-group">
-      <label  class="name" for="exampleInputPassword1"> </label>
-      <input type="password" class="text-center input-form" id="exampleInputPassword1" placeholder="nome">
-    </div>
-    <div class="form-group">
-      <label  class="pass" for="exampleInputPassword1"> </label>
-      <input type="password" class="text-center input-form" id="exampleInputPassword1" placeholder="confirmar senha">
-    </div>
-    <div class="form-group">
-      <label  class="check-pass" for="exampleInputPassword1"> </label>
-      <input type="password" class="text-center input-form" id="exampleInputPassword1" placeholder="código">
-    </div>
-    <div class="form-group">
-      <label  class="code" for="exampleInputPassword1"> </label>
-      <input type="password" class="text-center input-form" id="exampleInputPassword1" placeholder="senha">
-    </div>
-    <a href="" class="btn more-two">Inscreva-se</a>
+      <%= form_for @user, url: user_create_path, html: {class: 'form'} do |f| %>
+        <div class="form-group">
+          <label class="phone-user" for="exampleInputEmail1"></label>
+          <input type="text" name="user[ddd]" class="text-center input-form" id="" aria-describedby="" placeholder="ddd">
+        </div>
+        <div class="form-group">
+          <label class="phone-user" for="exampleInputEmail1"></label>
+          <input type="text" name="user[phone_number]" class="text-center input-form" id="" aria-describedby="" placeholder="celular">
+        </div>
+        <div class="form-group">
+          <label  class="name" for="exampleInputPassword1"> </label>
+          <input type="text" name="user[name]" class="text-center input-form" id="exampleInputPassword1" placeholder="nome">
+        </div>
+        <div class="form-group">
+          <label  class="code" for="exampleInputPassword1"> </label>
+          <input type="password" name="user[password]" class="text-center input-form" id="exampleInputPassword1" placeholder="senha">
+        </div>
+        <div class="form-group">
+          <label  class="check-pass" for="exampleInputPassword1"> </label>
+          <input type="password" name="user[invitation_code]" class="text-center input-form" id="exampleInputPassword1" placeholder="código">
+        </div>
+        <%= f.submit class: "btn more-two" %>
+      <% end %>
   </div>
 </section>

@@ -46,7 +46,7 @@ class User < ApplicationRecord
   end
 
   def invited_friends
-    User.where(used_invitation_code: user.invitation_code)
+    User.where(used_invitation_code: invitation_code)
   end
 
   def check_for_sale
