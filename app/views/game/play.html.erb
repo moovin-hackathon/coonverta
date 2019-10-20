@@ -34,8 +34,7 @@
                 <label class="pass-user" for="exampleInputPassword1"> </label>
                 <input type="text" name="password" class="text-center input-form2" id="exampleInputPassword1" placeholder="00000">
             </div>
-            <%# <button type="button" class="btn btn-select">Validar</button> %>
-            <%= button_to "Validar", user, class:"btn btn-select", method: :patch, remote: true, params: { user_id: @current_user.id } %>
+            <button type="button" class="btn btn-select">Validar</button>
         </div>
     </section>
 <% end %>
