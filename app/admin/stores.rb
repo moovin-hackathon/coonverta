@@ -1,10 +1,11 @@
 ActiveAdmin.register Store do
   menu priority: 1 
 
+  filter :store
   filter :name
   filter :default_invitation_code
 
-  permit_params :name, :default_invitation_code
+  permit_params :name, :default_invitation_code, :store
 
   index do
     column :name do |store|
@@ -16,6 +17,7 @@ ActiveAdmin.register Store do
 
   form do |f|
     f.inputs do
+      f.input :store
       f.input :name
       f.input :default_invitation_code
     end

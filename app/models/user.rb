@@ -58,6 +58,17 @@ class User < ApplicationRecord
     sales.pluck(:slug)
   end
 
+  def self.send_invitation_code!(invitation_code:, user_params:, store_name: '') 
+    phone_number = "#{user_params[:ddd]}#{user_params[:phone_number]}"
+    if store_name.present?
+      message = "Olá #{user_params[:name]}! #{store_name} veio convidá-lo para paricipar da promoção. Para isso, clique no link: https://coonverta.herokuapp.com entre colocando o código: #{invitation_code}"
+    else
+      message = "Olá #{user_params[:name]}! Estou lhe convidando para paricipar da promoção. Para isso, clique no link: https://coonverta.herokuapp.com entre colocando o código: #{invitation_code}"
+    end
+    
+    SendNotificationWorker.perform_async(phone_number, message)
+  end
+
   private 
 
   def get_phase(points)
