@@ -1,3 +1,3 @@
 class Phase < ApplicationRecord
-  belongs_to :games
+  belongs_to :game
 end
