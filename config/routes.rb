@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  require "sidekiq/web"
+  if Rails.env.production?
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      username == ENV['SIDEKIQ_USER'] && password == ENV['SIDEKIQ_PASSWORD']
+    end
+  end
+
   root 'user#login'
 
   get '/login', to: 'user#login', as: 'user_login'
