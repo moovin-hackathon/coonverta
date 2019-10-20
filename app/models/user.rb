@@ -6,7 +6,7 @@ class User < ApplicationRecord
   attr_accessor :password
   before_create :encrypt_password
   before_create :generate_invitation_code
-
+  
   after_commit :add_point, on: :create, prepend: true
   after_commit :check_for_sale, on: :create, if: :reward_points_changed?
   

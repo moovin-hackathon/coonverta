@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   get '/jogar', to: 'game#play', as: 'game_play'
 
+  get '/give-ten', to: 'game#give_10_points', as: 'game_give_10_points'
+  get '/give-one', to: 'game#give_1_point', as: 'game_give_1_point'
+
   # API
   post '/api/batch-invite', to: 'api#batch_invite'
   get '/api/user-sales', to: 'api#sales_from_users'
