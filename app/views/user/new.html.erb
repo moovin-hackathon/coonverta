@@ -1,6 +1,13 @@
 <section class="jumbotron text-center section-twoo">
   <div class="container">
     <p class="login">Cadastro</p>
+      <% if @user.errors.any? %>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+      <% end %>
       <%= form_for @user, url: user_create_path, html: {class: 'form'} do |f| %>
         <div class="form-group">
           <label class="phone-user" for="exampleInputEmail1"></label>
@@ -20,7 +27,7 @@
         </div>
         <div class="form-group">
           <label  class="check-pass" for="exampleInputPassword1"> </label>
-          <input type="password" name="user[invitation_code]" class="text-center input-form" id="exampleInputPassword1" placeholder="código">
+          <input type="text" name="user[used_invitation_code]" class="text-center input-form" id="exampleInputPassword1" placeholder="código">
         </div>
         <%= f.submit class: "btn more-two" %>
       <% end %>

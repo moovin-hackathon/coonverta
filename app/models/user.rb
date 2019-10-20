@@ -33,8 +33,8 @@ class User < ApplicationRecord
 
   def add_point 
     if used_invitation_code.present?
-      user = User.find(invitation_code: used_invitation_code)
-      if user.actual_phase.step == 1 
+      user = User.find_by(invitation_code: used_invitation_code)
+      if user && user.actual_phase.step == 1 
         user.reward_points += 1
         user.save
       end
