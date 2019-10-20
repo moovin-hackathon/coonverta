@@ -1,0 +1,231 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ 
+ */@import "bootstrap";
+
+
+
+ // Place all the styles related to the Game controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+    font-family: 'Open Sans Regular', sans-serif;
+  }
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Regular.ttf');
+    src: url('fonts/OpenSans-Bold.ttf');
+    src: url('fonts/OpenSans-SemiBold.ttf');
+}
+.text {
+    color: #FFFFFF !important;
+    font-family: 'Open Sans SemiBold', sans-serif;
+    font-size: 44px;
+    letter-spacing: 0;
+    opacity: 1;
+}
+
+.line {
+    border: 1px solid #FFFFFF;
+    opacity: 1;
+    width: 100px;
+    margin: auto;
+    margin-top: 20px
+}
+
+.card {
+    height: 200px !important;
+}
+
+.text-card {
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+    font-family: 'Open Sans Regular', sans-serif;
+    font-size: 13px;
+}
+
+.body-card {
+    text-align: center;
+    padding-top: 65px; 
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.top-login {
+    text-align: right;
+    padding: 30px;
+    color: #ffffff !important;
+    cursor: pointer;
+}
+
+.icon {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.radius {
+    border-radius: 30px !important;
+}
+
+.more {
+    border: 1px solid #FFFFFF !important;
+    border-radius: 30px !important;
+    width: 130px;
+    cursor: pointer;
+    color: #ffffff !important;
+}
+
+footer {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-size: 14px;
+}
+
+
+.album {
+    background-color: #7075B8;
+}
+
+.top {
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.link  {
+    color: #4285f4 !important;
+    text-decoration: underline !important;
+    font-size: 10px;
+    cursor: pointer;
+    padding-top: 10px;
+} 
+
+.center {
+    width: 100px;
+    margin: auto;
+}
+.icon-center {
+    width: 223px;
+    margin-bottom: 83px !important;
+    margin-top: 50px;
+}
+#knot {
+    position: absolute;
+}
+
+svg {
+    color: #FFFFFF;
+}
+
+a:link {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.aling-center {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: left;
+    padding-left: 25px;
+}
+
+.check {
+    font-family: 'Open Sans Regular', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0;
+    opacity: 1; 
+    color: #FFFFFF !important; 
+}
+:root {
+    --jumbotron-padding-y: 3rem;
+  }
+  
+  .jumbotron {
+    padding-top: var(--jumbotron-padding-y);
+    padding-bottom: var(--jumbotron-padding-y);
+    margin-bottom: 0;
+    background-color: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .jumbotron {
+      padding-top: calc(var(--jumbotron-padding-y) * 2);
+      padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+    }
+  }
+  
+ .section{
+    background-color: #7075B8 !important;
+  }
+  .section-twoo {
+    background-color: #FFFFFF !important;  
+  }
+
+  .login {
+    color: #575C9F;
+    letter-spacing: 0;
+    opacity: 1;
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 44px;
+    
+  }
+
+  form input[type="text"]{
+    border: none;
+    border-bottom: 1px solid #BCBCBC;
+    opacity: 1;
+  }
+
+  form input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #BCBCBC;
+    opacity: 1;  
+  }
+  .btn-more {
+    color: #FFFFFF !important;
+    border-radius: 30px !important;
+    background-color: #7075B8 !important;
+    width: 130px;
+  }
+
+  .hidden {
+    display: none;
+  }
+  .no-hidden {
+      display: block;
+  }
+
+  .jumbotron p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .jumbotron-heading {
+    font-weight: 300;
+  }
+  
+  .jumbotron .container {
+    max-width: 40rem;
+  }
+  
+  footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  footer p {
+    margin-bottom: .25rem;
+  }
+  
+  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }

@@ -79,6 +79,10 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
+    bootstrap (4.3.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     builder (3.2.3)
     byebug (11.0.1)
     coderay (1.1.2)
@@ -156,6 +160,7 @@ GEM
     pg (1.1.4)
     polyamorous (2.3.0)
       activerecord (>= 5.0)
+    popper_js (1.14.5)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -275,6 +280,7 @@ DEPENDENCIES
   aws-sdk-sns
   bcrypt-ruby
   bootsnap (>= 1.1.0)
+  bootstrap (~> 4.3.1)
   byebug
   devise (>= 4.7.1)
   dotenv-rails
