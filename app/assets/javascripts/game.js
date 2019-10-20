@@ -8,11 +8,6 @@ $(document).ready(function (){
         }, 1500);
     });
 
-    $(".link").click(function (){
-        $(".hidden").removeClass();
-        $(".user").hide();
-    });
-
     $(".top-login").click(function (){
         console.log('a')
         $('html, body').animate({
