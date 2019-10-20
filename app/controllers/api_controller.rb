@@ -1,23 +1,45 @@
 class ApiController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   before_action :authenticate_request!
 
-  def batch_create
+  def batch_invite
+    permitted_users = params.permit(users: [:name, :ddd, :phone_number])
 
+    permitted_users[:users].each do |user_param|
+      User.send_invitation_code!(user_param)
+    end
+
+    render json: {
+      success: true,
+      message: "Messages scheduled to send"
+    }
   end
 
-  def user_sales
-    users_with_sales = @store.sales.user_sales.pluck(:user_id).uniq
-
-
-    render json: 
+  def sales_from_users
+    begin
+      sales_from_store = @store.sales.pluck(:id)
+      user_sales = UserSale.where(sale_id: sales_from_store).pluck(:user_id).uniq
+      users = User.find(user_sales)
+    
+      render json: {
+        success: true,
+        users: users.as_json(only: [:name, :ddd, :phone_number, :reward_points],
+          methods: [:valid_sales_slug], 
+          include: [:sales])
+      }
+    rescue => exception
+      render json: {
+        success: false,
+        error: exception.message
+      }
+    end
   end
 
   private
 
   def authenticate_token!
-		authenticate_or_request_with_http_token do |token, _options|
+    authenticate_or_request_with_http_token do |token, _options|
       @store = Store.find_by(api_key: token)
 
       if @store.present?

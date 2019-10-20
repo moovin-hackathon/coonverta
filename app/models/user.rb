@@ -58,6 +58,10 @@ class User < ApplicationRecord
     sales.pluck(:slug)
   end
 
+  def self.send_invitation_code!(user_params) 
+    true
+  end
+
   private 
 
   def get_phase(points)

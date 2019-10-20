@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get '/jogar', to: 'game#play', as: 'game_play'
 
   # API
-  post '/api/batch-create', to: 'api#batch_create'
-  get '/api/user-sales', to: 'api#user_sales'
+  post '/api/batch-invite', to: 'api#batch_invite'
+  get '/api/user-sales', to: 'api#sales_from_users'
 
 end
