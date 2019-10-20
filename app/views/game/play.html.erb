@@ -30,12 +30,12 @@
     <section class="fase2">
         <div class="text-center realise_2">
             <p>FASE 2</p>
-            <p>Compartilhe o código a seguir com <%= @sharing_treshold %> amigos para passar de fase.</p>
             <div class="form-group">
                 <label class="pass-user" for="exampleInputPassword1"> </label>
                 <input type="text" name="password" class="text-center input-form2" id="exampleInputPassword1" placeholder="00000">
             </div>
-            <button type="button" class="btn btn-select">Validar</button>
+            <%# <button type="button" class="btn btn-select">Validar</button> %>
+            <%= button_to "Validar", user, class:"btn btn-select", method: :patch, remote: true, params: { user_id: @current_user.id } %>
         </div>
     </section>
 <% end %>

@@ -6,9 +6,9 @@ class User < ApplicationRecord
   attr_accessor :password
   before_create :encrypt_password
   before_create :generate_invitation_code
-  after_create :add_point
 
-  before_save :check_for_sale, if: :reward_points_changed?
+  after_commit :add_point, on: :create, prepend: true
+  after_commit :check_for_sale, on: :create, if: :reward_points_changed?
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -49,7 +49,7 @@ class User < ApplicationRecord
   end
 
   def check_for_sale
-    CheckForSaleWorker.perform_async(id)
+    CheckForSaleWorker.perform_async(self)
   end
 
   def valid_sales_slug
