@@ -1,4 +1,6 @@
 ---
 :queues:
   - default
+  - sale
+  - notification
 :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 1 %>

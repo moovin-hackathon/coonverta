@@ -1,6 +1,6 @@
 class SendNotificationWorker
   include Sidekiq::Worker
-  sidekiq_options queue: 'default'
+  sidekiq_options queue: 'notification'
 
   def perform(phone_number, message)
     sns = Aws::SNS::Client.new(

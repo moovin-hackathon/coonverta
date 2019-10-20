@@ -34,17 +34,10 @@ class User < ApplicationRecord
 
   def generate_invitation_code
     self.invitation_code = rand.to_s[2..7]
-    self.save
   end
 
   def add_point 
-    if used_invitation_code.present?
-      user = User.find_by(invitation_code: used_invitation_code)
-      if user && user.actual_phase.step == 1 
-        user.reward_points += 1
-        user.save
-      end
-    end
+    AddPointWorker.perform_async(id)
   end
 
   def actual_phase
@@ -56,8 +49,7 @@ class User < ApplicationRecord
   end
 
   def check_for_sale
-    sales_to_apply = Sale.where('reward_points <= ?', reward_points).where.not(id: sales.pluck(:id))
-    sales_to_apply.each { |sale| UserSale.create(user: self, sale: sale) }
+    CheckForSale.perform_async(id)
   end
 
   def valid_sales_slug
