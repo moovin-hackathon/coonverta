@@ -14,7 +14,7 @@ development:
   timeout: 5000
   encoding: utf8
   username: <%= ENV["DB_USERNAME"] || "postgres" %>
-  password:
+  password: <%= ENV["DB_PASSWORD"] || "" %>
 
 test:
   <<: *default
