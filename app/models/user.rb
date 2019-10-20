@@ -49,7 +49,7 @@ class User < ApplicationRecord
   end
 
   def check_for_sale
-    CheckForSale.perform_async(id)
+    CheckForSaleWorker.perform_async(id)
   end
 
   def valid_sales_slug
