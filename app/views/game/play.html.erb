@@ -1,71 +1,87 @@
-<section class="fase1">
-<div class="text-center realise">
-    <p>1</p>
-    <p>Compartilhe o código a seguir com X amigos para passar de fase.</p>
-    <div class="form-group">
-        <label class="pass-user" for="exampleInputPassword1"> </label>
-        <input type="password" name="password" class="text-center input-form" id="exampleInputPassword1" placeholder="Seu joão">
-    </div>
+<% if @phase.step.to_s == '1' %>
+    <section class="fase1">
+    <div class="text-center realise">
+        <p>FASE 1</p>
+        <p>Compartilhe o código a seguir com <%= @sharing_treshold %> amigos para passar de fase.</p>
+        <div class="form-group">
+            <label class="pass-user" for="exampleInputPassword1"> </label>
+            <input type="text" name="password" value="<%= @user_invitation_code %>" class="text-center input-form" id="exampleInputPassword1" placeholder="codigo">
+        </div>
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="30.667" height="30.667" viewBox="0 0 30.667 30.667"><defs><style>.a{fill:#7075B8;}</style></defs><path class="a" d="M30.667,14.939A15.082,15.082,0,0,1,8.335,28.02L0,30.667,2.717,22.65A14.787,14.787,0,0,1,.558,14.938a15.055,15.055,0,0,1,30.109,0ZM23.214,18.38c-.094-.151-.34-.243-.708-.427s-2.184-1.069-2.521-1.189-.586-.185-.832.182-.951,1.191-1.168,1.437-.43.276-.8.095a10.174,10.174,0,0,1-2.969-1.817,11.016,11.016,0,0,1-2.052-2.536c-.217-.366-.022-.564.161-.746.165-.165.369-.428.554-.643a2.441,2.441,0,0,0,.369-.609.682.682,0,0,0-.031-.643c-.092-.184-.829-1.984-1.138-2.717s-.614-.611-.83-.611-.461-.03-.707-.03a1.351,1.351,0,0,0-.983.456,4.1,4.1,0,0,0-1.291,3.054,7.079,7.079,0,0,0,1.506,3.787c.186.243,2.554,4.062,6.305,5.528s3.753.976,4.429.914A3.723,3.723,0,0,0,23,20.126,3.043,3.043,0,0,0,23.214,18.38Z"/></svg>
-    <svg xmlns="http://www.w3.org/2000/svg" width="30.667" height="30.667" viewBox="0 0 30.667 30.667"><defs><style>.a{fill:#7075b8;}</style></defs><path class="a" d="M30.667,14.939A15.082,15.082,0,0,1,8.335,28.02L0,30.667,2.717,22.65A14.787,14.787,0,0,1,.558,14.938a15.055,15.055,0,0,1,30.109,0Z" transform="translate(0 30.667) rotate(-90)"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30.667" height="30.667" viewBox="0 0 30.667 30.667"><defs><style>.a{fill:#7075B8;}</style></defs><path class="a" d="M30.667,14.939A15.082,15.082,0,0,1,8.335,28.02L0,30.667,2.717,22.65A14.787,14.787,0,0,1,.558,14.938a15.055,15.055,0,0,1,30.109,0ZM23.214,18.38c-.094-.151-.34-.243-.708-.427s-2.184-1.069-2.521-1.189-.586-.185-.832.182-.951,1.191-1.168,1.437-.43.276-.8.095a10.174,10.174,0,0,1-2.969-1.817,11.016,11.016,0,0,1-2.052-2.536c-.217-.366-.022-.564.161-.746.165-.165.369-.428.554-.643a2.441,2.441,0,0,0,.369-.609.682.682,0,0,0-.031-.643c-.092-.184-.829-1.984-1.138-2.717s-.614-.611-.83-.611-.461-.03-.707-.03a1.351,1.351,0,0,0-.983.456,4.1,4.1,0,0,0-1.291,3.054,7.079,7.079,0,0,0,1.506,3.787c.186.243,2.554,4.062,6.305,5.528s3.753.976,4.429.914A3.723,3.723,0,0,0,23,20.126,3.043,3.043,0,0,0,23.214,18.38Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30.667" height="30.667" viewBox="0 0 30.667 30.667"><defs><style>.a{fill:#7075b8;}</style></defs><path class="a" d="M30.667,14.939A15.082,15.082,0,0,1,8.335,28.02L0,30.667,2.717,22.65A14.787,14.787,0,0,1,.558,14.938a15.055,15.055,0,0,1,30.109,0Z" transform="translate(0 30.667) rotate(-90)"/></svg>
+        <br/>
+        <br/>
 
-    <div class="form-group">
-        <label class="phone-user" for="exampleInputEmail1"></label>
-        <input type="text" name="ddd" class="text-center input-form" id="" aria-describedby="" placeholder="ddd">
+        <% 5.times do |i| %>
+            <div class="form-group">
+                <label class="phone-user" for="exampleInputEmail1"></label>
+                <input type="text" name="name" value="<% if @invited_friends[i] %><%= @invited_friends[i].name %><% end %>" class="text-center input-form" id="" aria-describedby="" placeholder="name">
+            </div>
+        <% end %>
     </div>
-    <div class="form-group">
-        <label class="phone-user" for="exampleInputEmail1"></label>
-        <input type="text" name="phone_number" class="text-center input-form" id="" aria-describedby="" placeholder="celular">
     </div>
-    <div class="form-group">
-        <label class="pass-user" for="exampleInputPassword1"> </label>
-        <input type="password" name="password" class="text-center input-form" id="exampleInputPassword1" placeholder="senha">
-    </div>
-    <div class="form-group">
-        <label class="pass-user" for="exampleInputPassword1"> </label>
-        <input type="password" name="password" class="text-center input-form" id="exampleInputPassword1" placeholder="senha">
-    </div>
-    <div class="form-group">
-        <label class="pass-user" for="exampleInputPassword1"> </label>
-        <input type="password" name="password" class="text-center input-form" id="exampleInputPassword1" placeholder="senha">
-    </div>
-</div>
-</div>
-</section>
+    </section>
+<% end %>
 
-<section class="fase2">
-    <div class="text-center realise_2">
-        <p>2</p>
-        <p>Compartilhe o código a seguir com X amigos para passar de fase.</p>
-    <div class="form-group">
-        <label class="pass-user" for="exampleInputPassword1"> </label>
-        <input type="password" name="password" class="text-center input-form2" id="exampleInputPassword1" placeholder="00000">
-    </div>
-        <button type="button" class="btn btn-select">Validar</button>
-    </div>
-</section>
+<% if @phase.step.to_s == '2' %>
+    <section class="fase2">
+        <div class="text-center realise_2">
+            <p>FASE 2</p>
+            <p>Compartilhe o código a seguir com <%= @sharing_treshold %> amigos para passar de fase.</p>
+            <div class="form-group">
+                <label class="pass-user" for="exampleInputPassword1"> </label>
+                <input type="text" name="password" class="text-center input-form2" id="exampleInputPassword1" placeholder="00000">
+            </div>
+            <button type="button" class="btn btn-select">Validar</button>
+        </div>
+    </section>
+<% end %>
 
+<% if @phase.step.to_s == '3' %>
 <section class="fase1">
     <div class="text-center realise">
-        <p>3</p>
+        <p>FASE 3</p>
         <p>Responda a pesquisa e passe de fase.</p>
         <div class="row">
-        <div class="col-md-4" style="width: 320px;margin: auto;">
+            <div class="col-md-4" style="width: 320px;margin: auto;">
+                <div class="card mb-4 box-shadow radius_2">
+                    <div class="body-card">
+                        <p class="card-text text-card2">Como foi sua experiência de compra?</p>
+                        <div class="option">
+                            <div class="fift"><button type="button" class="btn btn-select">Boa</button></div>
+                            <div class="fift"><button type="button" class="btn btn-select">Ruim</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" style="width: 320px;margin: auto;">
             <div class="card mb-4 box-shadow radius_2">
                 <div class="body-card">
-                    <p class="card-text text-card2">Como foi sua experiência de compra?</p>
+                    <p class="card-text text-card2">Sua mercadoria correspondeu às suas expectativas?</p>
                     <div class="option">
-                        <div class="fift"><button type="button" class="btn btn-select">Boa</button></div>
-                        <div class="fift"><button type="button" class="btn btn-select">Ruim</button></div>
+                        <div class="fift"><button type="button" class="btn btn-select">Sim</button></div>
+                        <div class="fift"><button type="button" class="btn btn-select">Não</button></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4" style="width: 320px;margin: auto;">
+            <div class="card mb-4 box-shadow radius_2">
+                <div class="body-card">
+                    <p class="card-text text-card2">Quanto ao tempo de entrega, ficou de acordo com o esperado?.</p>
+                    <div class="option">
+                        <div class="fift"><button type="button" class="btn btn-select">Sim</button></div>
+                        <div class="fift"><button type="button" class="btn btn-select">Não</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" style="width: 320px;margin: auto;">
         <div class="card mb-4 box-shadow radius_2">
             <div class="body-card">
-                <p class="card-text text-card2">Sua mercadoria correspondeu às suas expectativas?</p>
+                <p class="card-text text-card2">Você recomendaria a familiares e amigos?</p>
                 <div class="option">
                     <div class="fift"><button type="button" class="btn btn-select">Sim</button></div>
                     <div class="fift"><button type="button" class="btn btn-select">Não</button></div>
@@ -74,39 +90,15 @@
         </div>
     </div>
     <div class="col-md-4" style="width: 320px;margin: auto;">
-    <div class="card mb-4 box-shadow radius_2">
-        <div class="body-card">
-        <p class="card-text text-card2">Quanto ao tempo de entrega, ficou de acordo com o esperado?.</p>
-        <div class="option">
-            <div class="fift"><button type="button" class="btn btn-select">Sim</button></div>
-            <div class="fift"><button type="button" class="btn btn-select">Não</button></div>
+        <div class="card mb-4 box-shadow radius_2">
+            <div class="body-card">
+                <p class="card-text text-card2">Qual é seu nível de satisfação com a loja?</p>
+                <div class="option">
+                    <div class="fift"><button type="button" class="btn btn-select">Satisfeito</button></div>
+                    <div class="fift"><button type="button" class="btn btn-select">Insatisfeito</button></div>
+                </div>
+            </div>
         </div>
-    </div>
-        </div>
-    </div>
-</div>
-<div class="col-md-4" style="width: 320px;margin: auto;">
-<div class="card mb-4 box-shadow radius_2">
-    <div class="body-card">
-        <p class="card-text text-card2">Você recomendaria a familiares e amigos?</p>
-        <div class="option">
-        <div class="fift"><button type="button" class="btn btn-select">Sim</button></div>
-        <div class="fift"><button type="button" class="btn btn-select">Não</button></div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="col-md-4" style="width: 320px;margin: auto;">
-<div class="card mb-4 box-shadow radius_2">
-    <div class="body-card">
-        <p class="card-text text-card2">Qual é seu nível de satisfação com a loja?</p>
-        <div class="option">
-        <div class="fift"><button type="button" class="btn btn-select">Satisfeito</button></div>
-        <div class="fift"><button type="button" class="btn btn-select">Insatisfeito</button></div>
-        </div>
-    </div>
-</div>
-</div>
     </div>
 </section>
-
+<% end %>
