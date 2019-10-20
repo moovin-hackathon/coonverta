@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_19_183118) do
+ActiveRecord::Schema.define(version: 2019_10_20_010723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,4 +41,69 @@ ActiveRecord::Schema.define(version: 2019_10_19_183118) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "game_type"
+    t.bigint "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_games_on_store_id"
+  end
+
+  create_table "phases", force: :cascade do |t|
+    t.integer "required_ponts"
+    t.string "name"
+    t.string "step"
+    t.integer "reward_points"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_phases_on_game_id"
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer "reward_points"
+    t.decimal "discount_value", precision: 8, scale: 2
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "name"
+    t.string "api_key"
+    t.string "default_invitation_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_sales", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "sale_id"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sale_id"], name: "index_user_sales_on_sale_id"
+    t.index ["user_id"], name: "index_user_sales_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "ddd"
+    t.string "phone_number"
+    t.string "password_hash"
+    t.integer "reward_points", default: 0
+    t.string "invitation_code"
+    t.string "used_invitation_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_salt"
+    t.bigint "store_id"
+    t.index ["store_id"], name: "index_users_on_store_id"
+  end
+
+  add_foreign_key "games", "stores"
+  add_foreign_key "phases", "games"
+  add_foreign_key "user_sales", "sales"
+  add_foreign_key "user_sales", "users"
 end

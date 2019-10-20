@@ -1,1 +1,35 @@
-<h1>CADASTRO!!</h1>
+<h1>cadastro - teste</h1>
+
+<%= form_for @user, url: user_create_path do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :ddd %><br />
+    <%= f.text_field :ddd %>
+  </p>
+  <p>
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :invitation_code %>
+    <%= f.text_field :invitation_code %>
+  </p>
+  <p class="button"><%= f.submit %></p>
+<% end %>

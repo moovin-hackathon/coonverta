@@ -22,6 +22,4 @@ test:
 
 production:
   <<: *default
-  database: coonverta_production
-  username: coonverta
-  password: <%= ENV['COONVERTA_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
