@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  belongs_to :store 
+
   attr_accessor :password
   before_save :encrypt_password
+  after_create :add_point
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -22,5 +25,20 @@ class User < ApplicationRecord
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
+
+  def add_point 
+    if used_invitation_code.present?
+      user = User.find(invitation_code: used_invitation_code)
+      if user.actual_phase.step == 1 
+        user.reward_points += 1
+        user.save
+      end
+    end
+  end
+
+  def actual_phase
+    store.game.phases.where("required_points >= ?", user.reward_points)
+                     .order(required_points: :desc).first
   end
 end
