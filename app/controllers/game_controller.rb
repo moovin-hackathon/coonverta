@@ -5,5 +5,6 @@ class GameController < ApplicationController
         @invited_friends = @current_user.invited_friends.pluck(:name) if @phase.step == '1'
         @user_invitation_code = @current_user.invitation_code
         @sharing_treshold = 5
+        @sharing_message = "Use meu código para participar do game da #{@current_user.store.name}! Acesse http://bit.ly/2J3fP6o e se cadastre com o código #{@user_invitation_code} para participar e ganhar descontos!"
     end
 end

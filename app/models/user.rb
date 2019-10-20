@@ -49,7 +49,7 @@ class User < ApplicationRecord
   end
 
   def check_for_sale
-    CheckForSale.perform_async(id)
+    CheckForSaleWorker.perform_async(id)
   end
 
   def valid_sales_slug
@@ -60,9 +60,9 @@ class User < ApplicationRecord
     invitee_store = Store.find_by(default_invitation_code: user_invitation_code)
 
     if invitee_store.present?
-      message = "Olá #{user_params[:name]}! #{store_name} te convida para participar do game! Passe de fase e ganhe descontos! Clique no link bit.ly/2nZZNTt e insira o código #{user_invitation_code}." 
+      message = "Olá #{user_params[:name]}! #{store_name} te convida para participar do game! Passe de fase e ganhe descontos! Clique no link http://bit.ly/2J3fP6o e insira o código #{user_invitation_code}." 
     else
-      message = "Use meu código para participar do game da #{store_name}! Acesse bit.ly/2nZZNTt e se cadastre com o código #{user_invitation_code} para participar e ganhar descontos!" 
+      message = "Use meu código para participar do game da #{store_name}! Acesse http://bit.ly/2J3fP6o e se cadastre com o código #{user_invitation_code} para participar e ganhar descontos!" 
     end
     
     phone_number = "#{user_params[:ddd]}#{user_params[:phone_number]}"
