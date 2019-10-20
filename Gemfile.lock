@@ -57,6 +57,8 @@ GEM
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     arel (9.0.0)
+    autoprefixer-rails (9.6.5)
+      execjs
     aws-eventstream (1.0.3)
     aws-partitions (1.226.0)
     aws-sdk-core (3.69.1)
