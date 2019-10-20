@@ -13,4 +13,9 @@ Rails.application.routes.draw do
   post '/cadastro', to: 'user#create', as: 'user_create'
 
   get '/jogar', to: 'game#play', as: 'game_play'
+
+  # API
+  post '/api/batch-create', to: 'api#batch_create'
+  get '/api/user-sales', to: 'api#user_sales'
+
 end

@@ -1,6 +1,7 @@
 class Store < ApplicationRecord
   has_many :users 
   has_many :games
+  has_many :sales
 
   validates_presence_of :name
   validates_uniqueness_of :api_key,:default_invitation_code
