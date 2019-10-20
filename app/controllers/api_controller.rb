@@ -8,7 +8,7 @@ class ApiController < ActionController::Base
 
     permitted_users[:users].each do |user_param|
       User.send_invitation_code!(
-        invitation_code: @store.default_invitation_code, 
+        user_invitation_code: @store.default_invitation_code, 
         store_name: @store.name, 
         user_params: user_param)
     end

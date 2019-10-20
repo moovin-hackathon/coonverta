@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   attr_accessor :password
   before_create :encrypt_password
+  before_create :generate_invitation_code
   after_create :add_point
 
   before_save :check_for_sale, if: :reward_points_changed?
@@ -29,6 +30,11 @@ class User < ApplicationRecord
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
+
+  def generate_invitation_code
+    self.invitation_code = rand.to_s[2..7]
+    self.save
   end
 
   def add_point 
@@ -58,22 +64,22 @@ class User < ApplicationRecord
     sales.pluck(:slug)
   end
 
-  def self.send_invitation_code!(invitation_code:, user_params:, store_name: '') 
-    phone_number = "#{user_params[:ddd]}#{user_params[:phone_number]}"
-    if store_name.present?
-      message = "Olá #{user_params[:name]}! #{store_name} veio convidá-lo para paricipar da promoção. Para isso, clique no link: https://coonverta.herokuapp.com entre colocando o código: #{invitation_code}"
+  def self.send_invitation_code!(user_invitation_code:, user_params:, store_name: '')
+    invitee_store = Store.find_by(default_invitation_code: user_invitation_code)
+
+    if invitee_store.present?
+      message = "Olá #{user_params[:name]}! #{store_name} te convida para participar do game! Passe de fase e ganhe descontos! Clique no link bit.ly/2nZZNTt e insira o código #{user_invitation_code}." 
     else
-      message = "Olá #{user_params[:name]}! Estou lhe convidando para paricipar da promoção. Para isso, clique no link: https://coonverta.herokuapp.com entre colocando o código: #{invitation_code}"
+      message = "Use meu código para participar do game da #{store_name}! Acesse bit.ly/2nZZNTt e se cadastre com o código #{user_invitation_code} para participar e ganhar descontos!" 
     end
     
+    phone_number = "#{user_params[:ddd]}#{user_params[:phone_number]}"
     SendNotificationWorker.perform_async(phone_number, message)
   end
 
-  private 
+  private
 
   def get_phase(points)
-    store.game.phases.where("required_ponts <= ?", points)
-                     .order(required_ponts: :desc).first
+    store.game.phases.where("required_ponts <= ?", points).order(required_ponts: :desc).first
   end
-
 end
